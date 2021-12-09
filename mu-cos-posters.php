@@ -34,23 +34,29 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 			\'width\': 48,
 			\'estimates\': \'\',
 			\'updating\': false,
+			\'tooLarge\': false,
 			updateEstimates() {
 				this.updating = true;
 				fetch(\'https://netapps.marshall.edu/cosweb/posters/getPrices.php?w=\' + this.width + \'&h=\' + this.height + \'\')
 				.then( data => { return data.json(); } )
-				.then( programJson => { this.estimates = programJson.estimates; this.height = programJson.height; this.width = programJson.width; this.updating = false; } )
+				.then( programJson => {
+					this.estimates = programJson.estimates;
+					this.estimates = this.estimates.filter(estimate => estimate.fits == true)
+					this.height = programJson.height;
+					this.width = programJson.width;
+					this.updating = false; } )
 			}
 		}"
 		x-init="updateEstimates()"
 	>';
 	$html .= '<form x-on:submit.prevent="updateEstimates()" class="">';
-	$html .= '<div class="form-row">';
-	$html .= '<label class="mr-2" for="cositc-poster-width">Poster width:</label>';
+	$html .= '<div class="flex items-center">';
+	$html .= '<label class="w-1/2 mr-2" for="cositc-poster-width">Poster width:</label>';
 	$html .= '<input x-on:change="updateEstimates()" x-bind:disable="updating" class="text-input w-16" type="number" x-model="width">';
 	$html .= '<span class="ml-2">inches</span>';
 	$html .= '</div>';
-	$html .= '<div class="mt-3">';
-	$html .= '<label class="mr-2" for="cositc-poster-height">Poster height:</label>';
+	$html .= '<div class="mt-3 flex items-center">';
+	$html .= '<label class="mr-2 w-1/2" for="cositc-poster-height">Poster height:</label>';
 	$html .= '<input x-on:change="updateEstimates()" x-bind:disable="updating" class="text-input w-16" type="number" x-model="height">';
 	$html .= '<span class="ml-2">inches</span>';
 	$html .= '</div>';
@@ -64,10 +70,12 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 	$html .= '</tr>';
 	$html .= '</thead>';
 	$html .= '<tbody>';
+	$html .= '<tr x-cloak x-show="Object.keys(estimates).length < 1"><td colspan="2">No media options fit these size requirements.</td></tr>';
 	$html .= '<template x-for="estimate in estimates">';
 	$html .= '<tr>';
 	$html .= '<td x-text="estimate.media"></td>';
-	$html .= '<td x-text="`$${estimate.cost}`"></td>';
+	$html .= '<td x-show="estimate.fits == true" x-text="`$${estimate.cost}`"></td>';
+	$html .= '<td x-show="estimate.fits != true" x-text="`cant print`"></td>';
 	$html .= '</tr>';
 	$html .= '</template>';
 	$html .= '</tbody>';
