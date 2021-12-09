@@ -43,7 +43,7 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 		}"
 		x-init="updateEstimates()"
 	>';
-	$html .= '<form x-on:submit.prevent="updateEstimates()" class="cositc-poster-estimate-calculator">';
+	$html .= '<form x-on:submit.prevent="updateEstimates()" class="">';
 	$html .= '<div class="form-row">';
 	$html .= '<label class="mr-2" for="cositc-poster-width">Poster width:</label>';
 	$html .= '<input x-on:change="updateEstimates()" x-bind:disable="updating" class="text-input w-16" type="number" x-model="width">';
