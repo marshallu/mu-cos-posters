@@ -23,7 +23,7 @@
 function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 	$data = shortcode_atts(
 		array(
-			'class'    => '',
+			'class' => '',
 		),
 		$atts
 	);
@@ -86,6 +86,67 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 }
 add_shortcode( 'mucos-poster-calculator', 'mucos_poster_calculator_shortcode' );
 
+
+/**
+ * The shortcode to display the poster cost calculator.
+ *
+ * @param array  $atts The array of attributes included with the shortcode.
+ * @param string $content The HTML string for the shortcode.
+ * @return string
+ */
+function mucos_poster_prices_shortcode( $atts, $content = null ) {
+	$data = shortcode_atts(
+		array(
+			'class' => '',
+		),
+		$atts
+	);
+
+	if ( false === get_transient( 'mu_cos_media_prices' ) ) {
+		$request = wp_remote_get( esc_url( 'https://netapps.marshall.edu/cosweb/posters/getMedia.php' ) );
+
+		if ( is_wp_error( $request ) ) {
+			return $request->get_error_message();
+		}
+
+		$body       = wp_remote_retrieve_body( $request );
+		$media_json = json_decode( $body );
+		set_transient( 'mu_cos_media_prices', $media_json, 86400 );
+	} else {
+		$media_json = get_transient( 'mu_cos_media_prices' );
+	}
+
+	$html  = '<div>';
+	$html .= '<div class="large-table">';
+	$html .= '<table class="table table-striped">';
+	$html .= '<thead>';
+	$html .= '<tr class="">';
+	$html .= '<th>Media &amp; Ink</th>';
+	$html .= '<th>Printed Area</th>';
+	$html .= '<th>Extra Media</th>';
+	$html .= '<th>Processing Fee</th>';
+	$html .= '</tr>';
+	$html .= '</thead>';
+	$html .= '<tbody>';
+	foreach ( $media_json->media as $item ) {
+		$html .= '<tr class="">';
+		$html .= '<td>' . esc_attr( $item->Name ) . '</td>';
+		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtPrinted, 2 ) ) . ' / sq. ft.</td>';
+		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtExtra, 2 ) ) . ' / sq. ft.</td>';
+		if ( 0 === $item->CostProcessing ) {
+			$html .= '<td class="">–</td>';
+		} else {
+			$html .= '<td class="">$' . esc_attr( number_format( $item->CostProcessing, 2 ) ) . '</td>';
+		}
+		$html .= '</tr>';
+	}
+	$html .= '</tbody>';
+	$html .= '</table>';
+	$html .= '</div>';
+	$html .= '</div>';
+	return $html;
+}
+add_shortcode( 'mucos-poster-prices', 'mucos_poster_prices_shortcode' );
 /**
  * Proper way to enqueue scripts and styles
  */
