@@ -84,7 +84,7 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 	$html .= '</div>';
 	return $html;
 }
-add_shortcode( 'mucos-poster-calculator-new', 'mucos_poster_calculator_shortcode' );
+add_shortcode( 'mucos-poster-calculator', 'mucos_poster_calculator_shortcode' );
 
 /**
  * Proper way to enqueue scripts and styles
