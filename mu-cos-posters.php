@@ -61,7 +61,7 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 	$html .= '<span class="ml-2">inches</span>';
 	$html .= '</div>';
 	$html .= '</form>';
-	$html .= '<div>';
+	$html .= '<div x-cloak>';
 	$html .= '<table class="table w-full table-bordered table-striped" x-cloak>';
 	$html .= '<thead>';
 	$html .= '<tr>';
