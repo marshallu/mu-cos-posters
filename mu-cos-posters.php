@@ -70,7 +70,7 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 	$html .= '</tr>';
 	$html .= '</thead>';
 	$html .= '<tbody>';
-	$html .= '<tr x-cloak x-show="Object.keys(estimates).length < 1"><td colspan="2">No media options fit these size requirements.</td></tr>';
+	$html .= '<tr x-cloak x-show="Object.keys(estimates).length < 1 || loading == false"><td colspan="2">No media options fit these size requirements.</td></tr>';
 	$html .= '<template x-for="estimate in estimates">';
 	$html .= '<tr>';
 	$html .= '<td x-text="estimate.media"></td>';
