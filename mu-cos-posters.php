@@ -28,6 +28,8 @@ function mucos_poster_calculator_shortcode( $atts, $content = null ) {
 		$atts
 	);
 
+	wp_enqueue_style( 'marsha-forms', get_theme_file_uri( 'css/marsha-forms.css' ), '', null, 'all' ); // phpcs:ignore
+
 	$html  = '<div
 		x-data="{
 			\'height\': 36,
