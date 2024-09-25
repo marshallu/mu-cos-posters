@@ -125,13 +125,13 @@ function mucos_poster_prices_shortcode( $atts ) {
 	$html .= '<tbody>';
 	foreach ( $media_json->media as $item ) {
 		$html .= '<tr class="">';
-		$html .= '<td>' . esc_attr( $item->Name ) . '</td>';
-		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtPrinted, 2 ) ) . ' / sq. ft.</td>';
-		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtExtra, 2 ) ) . ' / sq. ft.</td>';
-		if ( 0 === $item->CostProcessing ) {
-			$html .= '<td class="">–</td>';
+		$html .= '<td>' . esc_attr( $item->Name ) . '</td>'; // phpcs:ignore
+		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtPrinted, 2 ) ) . ' / sq. ft.</td>'; // phpcs:ignore
+		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtExtra, 2 ) ) . ' / sq. ft.</td>'; // phpcs:ignore
+		if ( 0 === $item->CostProcessing ) { // phpcs:ignore
+			$html .= '<td class="">-</td>';
 		} else {
-			$html .= '<td class="">$' . esc_attr( number_format( $item->CostProcessing, 2 ) ) . '</td>';
+			$html .= '<td class="">$' . esc_attr( number_format( $item->CostProcessing, 2 ) ) . '</td>'; // phpcs:ignore
 		}
 		$html .= '</tr>';
 	}
