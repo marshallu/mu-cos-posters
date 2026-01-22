@@ -116,7 +116,8 @@ function mucos_poster_prices_shortcode( $atts ) {
 	$html .= '<table class="table table-striped">';
 	$html .= '<thead>';
 	$html .= '<tr class="">';
-	$html .= '<th>Media &amp; Ink</th>';
+	$html .= '<th>Media</th>';
+	$html .= '<th>Printable Width</th>';
 	$html .= '<th>Printed Area</th>';
 	$html .= '<th>Extra Media</th>';
 	$html .= '<th>Processing Fee</th>';
@@ -126,6 +127,7 @@ function mucos_poster_prices_shortcode( $atts ) {
 	foreach ( $media_json->media as $item ) {
 		$html .= '<tr class="">';
 		$html .= '<td>' . esc_attr( $item->Name ) . '</td>'; // phpcs:ignore
+		$html .= '<td>' . esc_attr( number_format( $item->RollWidthPrintable, 0 ) ) . ' in.</td>'; // phpcs:ignore
 		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtPrinted, 2 ) ) . ' / sq. ft.</td>'; // phpcs:ignore
 		$html .= '<td>$' . esc_attr( number_format( $item->CostSqFtExtra, 2 ) ) . ' / sq. ft.</td>'; // phpcs:ignore
 		if ( 0 === $item->CostProcessing ) { // phpcs:ignore
