@@ -1,3 +1,147 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss" prefix(mcp);
+
+@source "../../**/*.php";
+
+/* Class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Prefers contrast variant */
+@custom-variant prefers-contrast (@media (prefers-contrast: more));
+
+@theme {
+  /* Reset defaults that this project replaces entirely */
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --breakpoint-*: initial;
+
+  /* ─── Colors ─────────────────────────────────────────────────────── */
+  --color-transparent: transparent;
+  --color-inherit: inherit;
+  --color-black: #131716;
+  --color-white: #ffffff;
+
+  --color-green-darkest: #003314;
+  --color-green-darker: #007129;
+  --color-green-dark: #028833;
+  --color-green: #00AC3E;
+  --color-green-bright: #08cd4f;
+  --color-green-light: #fafffc;
+
+  --color-brown: #925D49;
+  --color-brown-dark: #402d20;
+
+  --color-gray-50: #fafafa;
+  --color-gray-100: #edeeee;
+  --color-gray-200: #cbcece;
+  --color-gray-300: #a9adad;
+  --color-gray-400: #868c8c;
+  --color-gray-500: #535c5c;
+  --color-gray-600: #3a4040;
+  --color-gray-700: #313737;
+  --color-gray-800: #212424;
+  --color-gray-900: #131716;
+
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-200: #fef08a;
+  --color-yellow-300: #fde047;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+  --color-yellow-800: #854d0e;
+  --color-yellow-900: #713f12;
+
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+
+  /* ─── Font families ───────────────────────────────────────────────── */
+  --font-mont: 'Montserrat', "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-sans: 'Nunito Sans', "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-holiday: 'Snowburst One', cursive;
+
+  /* ─── Font sizes ──────────────────────────────────────────────────── */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
+  --text-7xl: 5rem;
+  --text-9xl: 7rem;
+  --text-safe: 1.16625rem;
+  --text-massive: 10rem;
+
+  /* ─── Breakpoints ─────────────────────────────────────────────────── */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+
+  /* ─── Extended spacing (heights / min-heights) ────────────────────── */
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
+  --spacing-144: 36rem;
+  --spacing-160: 40rem;
+  --spacing-104: 26rem;
+  --spacing-176: 44rem;
+  --spacing-184: 46rem;
+  --spacing-200: 50rem;
+
+  /* ─── Z-index ─────────────────────────────────────────────────────── */
+  --z-60: 60;
+  --z-70: 70;
+  --z-80: 80;
+  --z-90: 90;
+  --z-100: 100;
+}
+
+/* Centered container */
+@utility container {
+  margin-inline: auto;
+}
+
+/* border-12 utility */
+@utility border-12 {
+  border-width: 12px;
+}
+
+/* Background size utilities */
+@utility bg-125\% {
+  background-size: 125%;
+}
+
+@utility bg-135\% {
+  background-size: 135%;
+}
+
+/* Transition-visibility utility */
+@utility transition-visibility {
+  transition-property: visibility;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: var(--default-transition-duration, 150ms);
+}
