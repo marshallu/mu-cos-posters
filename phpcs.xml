@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="MU COS Posters">
-    <description>WordPress Coding Standards for MU COS Posters.</description>
+<ruleset name="Herd COS Posters">
+    <description>WordPress Coding Standards for Herd COS Posters.</description>
 
     <rule ref="WordPress"/>
 

@@ -1,15 +1,15 @@
 <?php
 /**
- * MU COS Posters
+ * Herd COS Posters
  *
  * College of Science printed posters cost calculator.
  *
- * @package  marshallu/mu-cos-posters
+ * @package  marshallu/herd-cos-posters
  *
- * Plugin Name:  MU COS Posters
+ * Plugin Name:  Herd COS Posters
  * Plugin URI: https://www.marshall.edu
  * Description: College of Science printed posters cost calculator.
- * Version: 1.0
+ * Version: 1.0.2
  * Author: Christopher McComas
  */
 
@@ -20,7 +20,7 @@
  *
  * @return string
  */
-function mucos_poster_calculator_shortcode( $atts ) {
+function herd_cos_posters_calculator_shortcode( $atts ) {
 	$data = shortcode_atts(
 		array(
 			'class' => '',
@@ -84,7 +84,7 @@ function mucos_poster_calculator_shortcode( $atts ) {
 	$html .= '</div>';
 	return $html;
 }
-add_shortcode( 'mucos-poster-calculator', 'mucos_poster_calculator_shortcode' );
+add_shortcode( 'mucos-poster-calculator', 'herd_cos_posters_calculator_shortcode' );
 
 
 /**
@@ -94,7 +94,7 @@ add_shortcode( 'mucos-poster-calculator', 'mucos_poster_calculator_shortcode' );
  *
  * @return string
  */
-function mucos_poster_prices_shortcode( $atts ) {
+function herd_cos_posters_prices_shortcode( $atts ) {
 	$data = shortcode_atts(
 		array(
 			'class' => '',
@@ -143,12 +143,12 @@ function mucos_poster_prices_shortcode( $atts ) {
 	$html .= '</div>';
 	return $html;
 }
-add_shortcode( 'mucos-poster-prices', 'mucos_poster_prices_shortcode' );
+add_shortcode( 'mucos-poster-prices', 'herd_cos_posters_prices_shortcode' );
 
 /**
  * Proper way to enqueue scripts and styles
  */
-function mu_cos_posts_enqueue_scrips() {
-	wp_enqueue_style( 'mu-cos-posters', plugin_dir_url( __FILE__ ) . 'css/mu-cos-posters.css', array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/mu-cos-posters.css' ), 'all' );
+function herd_cos_posters_enqueue_scripts() {
+	wp_enqueue_style( 'herd-cos-posters', plugin_dir_url( __FILE__ ) . 'css/herd-cos-posters.css', array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/herd-cos-posters.css' ), 'all' );
 }
-add_action( 'wp_enqueue_scripts', 'mu_cos_posts_enqueue_scrips' );
+add_action( 'wp_enqueue_scripts', 'herd_cos_posters_enqueue_scripts' );

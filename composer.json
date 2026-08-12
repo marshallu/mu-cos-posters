@@ -1,8 +1,8 @@
 {
-	"name": "marshallu/mu-cos-posters",
+	"name": "marshallu/herd-cos-posters",
 	"description": "Plugin for displaying College of Science poster printing information.",
 	"keywords": ["wordpress", "plugin"],
-	"homepage": "https://github.com/marshallu/mu-cos-posters",
+	"homepage": "https://github.com/marshallu/herd-cos-posters",
 	"license": "MIT",
 	"type": "wordpress-plugin",
 	"require": {

@@ -2,7 +2,7 @@ import Alpine from 'alpinejs'
 
 window.Alpine = Alpine
 
-Alpine.data('muCosPosters', () => ({
+Alpine.data('HerdCosPosters', () => ({
 	height: 36,
 	width: 48,
 	estimates: '',

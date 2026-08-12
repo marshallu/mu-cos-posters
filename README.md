@@ -1,2 +1,2 @@
-MU COS Posters
+Herd COS Posters
 ===

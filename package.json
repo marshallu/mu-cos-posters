@@ -1,7 +1,8 @@
 {
+	"name": "herd-cos-posters",
 	"scripts": {
-	  "dev": "npx @tailwindcss/cli -i ./source/css/mu-cos-posters.css -o ./css/mu-cos-posters.css --watch",
-	  "build": "npx @tailwindcss/cli -i ./source/css/mu-cos-posters.css -o ./css/mu-cos-posters.css --minify"
+	  "dev": "npx @tailwindcss/cli -i ./source/css/herd-cos-posters.css -o ./css/herd-cos-posters.css --watch",
+	  "build": "npx @tailwindcss/cli -i ./source/css/herd-cos-posters.css -o ./css/herd-cos-posters.css --minify"
 	},
 	"devDependencies": {
 	  "@tailwindcss/cli": "^4.2.1",
